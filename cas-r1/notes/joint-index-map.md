@@ -1,5 +1,7 @@
 # R1 joint index map
 
+These notes are cumulative across sessions: each finding names the session it came from. Per-session summaries are in `../sessions/<NN>-<name>/README.md`.
+
 As of session 01 (2026-10-17). The live state stream is the ground truth; vendor code is a source to check against.
 
 ## The short version
@@ -14,12 +16,12 @@ The R1 has **two numbering systems**, and confusing them is easy:
 The example converts between them with a table, `joint_idx_in_idl[]`. **If
 you use the enum values directly as wire slots, they don't match the
 robot.** Three named slots are empty and four unnamed slots are live. We made
-exactly that mistake in session 01 (`src/read_lowstate.cpp`). Through
+exactly that mistake in session 01 (`sessions/01-first-contact/src/read_lowstate.cpp`). Through
 `joint_idx_in_idl[]`, every mapping we've checked matches.
 
 ## What the live stream shows (observed)
 
-Read with `src/read_lowstate.cpp`. The robot was supine, at rest.
+Read with `sessions/01-first-contact/src/read_lowstate.cpp`. The robot was supine, at rest.
 
 - **26 wire slots report data:** 0–13, 15–19, 22–26, 29–30.
 - **Empty (all zeros, mode 0):** 14, 20, 21, plus 27–28 and 31–34.

@@ -60,11 +60,24 @@ it. A failed integration keeps its number; nothing is recycled.
 
 ```
 /cas-r1/
-    log/            session logs, newest last, append-only
-    predictions/    written before each session, never edited after
-    src/            the code, as it actually ran
-    notes/          hardware findings, state transitions, gotchas
+    sessions/
+        NN-name/
+            README.md       what this session found, in plain terms
+            prediction.md   written before the session, never edited after
+            log.md          the session as it happened, append-only
+            src/            the code, as it actually ran
+            data/           raw recordings from the session
+    notes/          cumulative findings across sessions: joint map,
+                    hardware findings, gotchas (each item names its session)
 ```
+
+One folder per session, numbered in order (sessions are roughly weekly).
+
+### Sessions
+
+| # | date | session | outcome |
+|---|---|---|---|
+| 01 | 2026-10-17 | [First contact](cas-r1/sessions/01-first-contact/) | reached the Jetson, read 26 joints, moved the left wrist ~9° with our own code |
 
 A second integration on different hardware gets its own top-level directory.
 One repository, because the log should not be split when the machine changes.

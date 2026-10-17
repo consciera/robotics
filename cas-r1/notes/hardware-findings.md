@@ -1,5 +1,7 @@
 # R1: hardware & SDK findings
 
+These notes are cumulative across sessions: each finding names the session it came from. Per-session summaries are in `../sessions/<NN>-<name>/README.md`.
+
 Running list. Edits are additive and dated.
 **Observed** = seen on this robot. **Inferred** = reasoned, not seen.
 **Operator-reported** = from the operator, not observed during a logged session.
@@ -46,7 +48,7 @@ Running list. Edits are additive and dated.
 - **Kp 10, +5° → stopped 1.9° short** at the hold (+3.1° reached), barely
   returned, and **wasn't visible** to the operator. **Kp 30, +10° → 0.7°
   short** (+9.3° reached), returned within 0.2°, and was **seen**. Both from
-  the CSVs in `log/`. **Observed.**
+  the CSVs in `sessions/01-first-contact/data/`. **Observed.**
 - Run 1 printed `end: completed`, even though the joint never reached its
   target or returned. **The program's "completed" means "ran to the end
   with no abort", not "reached the target".** Run 2's terminal output wasn't

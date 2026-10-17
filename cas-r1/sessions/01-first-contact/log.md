@@ -584,3 +584,9 @@ peak +9.3° of +10°, end net +0.2°, max |dq| 0.67 rad/s
 - Claude errors on record: estimated timestamps (corrected), "vendor enum
   is wrong" (retracted), "wrist returned" after the hand test (wrong),
   "goal 3 done" after run 1 (retracted).
+
+**16:50 (post-session, additive): Files reorganized into `cas-r1/sessions/01-first-contact/`.**
+This log is now `log.md` there. CSVs → `data/run1-wrist-5deg-kp10.csv`, `data/run2-wrist-10deg-kp30.csv`.
+Programs → `src/`, with `move_one_joint.cpp` split into `_run1` (rebuilt by reversing the 4
+documented edits; 10057 bytes, matching the logged copy) and `_run2`. Paths written
+earlier in this log refer to the old locations.
