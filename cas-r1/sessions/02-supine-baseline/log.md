@@ -311,3 +311,5 @@ the live display. The values come from the operator's predictions file
   - "Second board": inferred from two absences (Wi-Fi, audio). The file
     says so itself.
 - The file is committed as the operator wrote it. This dissent is in the log.
+
+**12:33: Session 02 ends here. The same sitting continued as session 03 (the voice work), logged in `../03-voice/log.md`.**

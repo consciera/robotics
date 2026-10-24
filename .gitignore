@@ -13,3 +13,6 @@ node_modules/
 
 # Sealed predictions: never commit (public repo; committing opens them)
 SEALED_PREDICTIONS_*
+
+# Generated audio (the generation script is the source)
+*.pcm
