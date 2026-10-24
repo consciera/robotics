@@ -36,6 +36,16 @@ we were right, the prediction was too technical to be worth making.
 **Wrong predictions stay in.** A prediction that only appears when it lands is
 not a prediction.
 
+**Two commits per session, from session 03 on.** The predictions are committed
+*before* the session starts, and the resolutions *after* it ends, as separate
+commits. The gap between the two commit timestamps is what makes the record
+verifiable rather than merely stated. (Session 02's predictions and resolution
+went in as a single commit after the session. Its commit message says so.)
+
+**Sealed predictions are never committed.** Files named `SEALED_PREDICTIONS_*`
+stay out of this public repository (`.gitignore` blocks them). Committing one
+would open it.
+
 The accumulating interest is not the hit rate — it is **the shape of the
 errors.** If we turn out to be consistently wrong in the same direction about
 how long the unglamorous parts take, that is the finding.
@@ -78,6 +88,7 @@ One folder per session, numbered in order (sessions are roughly weekly).
 | # | date | session | outcome |
 |---|---|---|---|
 | 01 | 2026-10-17 | [First contact](cas-r1/sessions/01-first-contact/) | reached the Jetson, read 26 joints, moved the left wrist ~9° with our own code |
+| 02 | 2026-10-24 | [Supine baseline](cas-r1/sessions/02-supine-baseline/) | read-only baseline before anything moved; same 26 live slots; live on-camera display |
 
 A second integration on different hardware gets its own top-level directory.
 One repository, because the log should not be split when the machine changes.
