@@ -81,3 +81,28 @@ and the head added at 29–30. *Inferred.*
 - A physical test (hand-move, `src/watch_lowstate.cpp`) for every slot except
   19. The legs especially, before any leg command.
 - What slot 30's 110° rest reading means.
+
+## Session 02 additions (2026-10-24)
+
+- **Live slots unchanged:** same 26 (0–13, 15–19, 22–26, 29–30), robot supine. **Observed.**
+- **Slot 26 → right wrist: supported by observation, not isolated.** Twisting
+  both wrists at once moved 19 by +58° and 26 by -18°. Session 01 showed 26
+  doesn't respond to the left wrist, so this points to the right wrist. To
+  confirm: twist the right wrist alone.
+- **Isolated hand tests, operator-reported from footage** (not seen live by
+  Claude; see the session 02 log, "Added after the fact"):
+  | wire slot | joint | evidence |
+  |---|---|---|
+  | 26 | **right wrist (twist)** | right wrist rotated alone, left untouched: slot 26 swung 29.3° |
+  | 29 | **head pitch** | head nod: +10.6°, an order of magnitude above its drift |
+  | 30 | **head yaw** | head turned left→right: -115.3°, then +74.7° returning |
+  | 19 | left wrist (twist) | responded again when rotated alone (also confirmed in session 01) |
+- These match the vendor's logical names (RightWristRoll, HEAD_PITCH, HEAD_YAW)
+  if `joint_idx_in_idl` maps logical 23–25 → wire 26, 29, 30. Those table
+  entries **still haven't been read**. One `sed` on the example would settle it.
+- Updated status of the session 01 wire-slot table: 26, 29, 30 move from
+  *inferred* to **identified (operator-reported)**. 19 stays **confirmed**.
+  0–18 and 22–25 are still *inferred*.
+- Note: slot 30's odd ~110–115° rest reading (session 01) is the head yaw
+  angle. Its zero is far from "facing forward", or the head was turned.
+  Unresolved.
