@@ -259,3 +259,55 @@ the live display. The values come from the operator's predictions file
   "names in the wrong places") rests on reading the vendor enum as wire
   slots. Session 01 retracted that reading (log 15:06): the enum names all
   four joints through `joint_idx_in_idl`. The file is left as written.
+
+**12:26: Prediction 3 check requested (does `ai` hold the audio device?).**
+- The prediction was committed in b72cec1 *before* this check, so a
+  resolution committed afterwards fits the before/after convention.
+- Method caveat: `aplay -l` only lists audio devices. It can't show who
+  holds one. Plan: `aplay -l` (what exists), then `sudo fuser -v /dev/snd/*`
+  (which processes have the device open). `sudo` is needed because the
+  service likely runs as root, and without it fuser would wrongly show
+  nobody.
+
+**12:27: `aplay -l` on the Jetson.** Only NVIDIA's built-in audio:
+- card 0 "HDA": 4 HDMI outputs (HDMI 0–3).
+- card 1 "APE": 22 internal Tegra audio-routing endpoints (XBAR/ADMAIF, ADSP).
+  These exist on every Orin and aren't a speaker by themselves.
+- **No USB audio device, and no card that looks like the robot's speaker
+  or microphone.** Inferred (not confirmed): the robot's speaker/mic hang
+  off another board, like the Wi-Fi (see 11:56). If so, Prediction 3 can't
+  be resolved from the Jetson. The device it's about isn't here.
+- Camera note: ~100 lines of output. Claude should have filtered it
+  (e.g. `aplay -l | grep ^card`). A blob on screen.
+
+**12:27: `sudo fuser -v /dev/snd/*`, process names only: `pulseaudio`.**
+- The only thing holding the Jetson's audio devices is **PulseAudio**, the
+  standard Linux sound server. Holding devices is its normal job; it lets
+  several programs play at once through it. **Nothing named `ai` holds
+  Jetson audio.**
+- **Prediction 3 status: UNRESOLVED.** No robot speaker/mic device exists on
+  the Jetson (only HDMI + internal routing), so the device the prediction
+  is about isn't here. What we can say: on the Jetson, audio goes through
+  PulseAudio, which allows sharing, not exclusive ownership by `ai`.
+  Still unknown: whether the `ai` service even runs on the Jetson.
+- To resolve: find the board that drives the speaker, or test playback
+  with the `ai` service running.
+
+**12:29: Predictions file updated by the operator/Cassian (v3): Prediction 3 scored FALSIFIED ("three ways").** Repo copy refreshed, with the same three privacy edits. Only additions vs the committed copy.
+- **Claude's view, for the record. Disagrees with the scoring.** The file's own
+  criteria, written beforehand: confirmed if "the audio device is held, or
+  playback conflicts while `ai` is running"; falsified if "a second audio
+  source plays cleanly with `ai` running and untouched". **No playback was
+  tested**, and the device the prediction is about (the robot's speaker)
+  **wasn't found on the Jetson**. What was observed: PulseAudio holds the
+  Jetson's HDMI/internal audio devices. That falsifies "`ai` holds the
+  *Jetson's* audio devices", but not the prediction as written. Claude's
+  score: **unresolved (premise not testable from the Jetson)**.
+- Specific overstatements in v3 (observed vs claimed):
+  - "The `ai` service is not involved in audio at all": only shown for the
+    Jetson's devices. Whether `ai` runs on the Jetson is unknown.
+  - "A USB speaker or DAC is picked up automatically… nothing to fight":
+    a plan, not yet tested.
+  - "Second board": inferred from two absences (Wi-Fi, audio). The file
+    says so itself.
+- The file is committed as the operator wrote it. This dissent is in the log.

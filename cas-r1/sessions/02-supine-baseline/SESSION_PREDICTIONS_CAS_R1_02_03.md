@@ -126,6 +126,38 @@ stack rather than a set of independent services.
 ⚡ **Resolves the moment `aplay -l` runs.** ⚠️ Worth doing before building
 anything around the pipeline.
 
+### ⛔ RESOLVED — 24 OCTOBER. FALSIFIED, THREE WAYS.
+
+**1. Wrong holder.** `fuser -v /dev/snd/*` returns **pulseaudio**. The `ai`
+service is not involved in audio at all.
+
+**2. Wrong premise.** ⡡ **There is no speaker on the Jetson to hold.** `aplay -l`
+lists card 0 as **HDMI only** and card 1 as the Tegra APE audio crossbar —
+`XBAR-ADMAIF` DMA channels internal to the chip, which appear whether or not any
+codec is wired to them. **No analogue output, no USB audio, nothing with a cone
+on the end of it.**
+
+**3. Wrong about it being an obstacle.** PulseAudio holding the sound devices is
+Linux behaving normally. A USB speaker or DAC is picked up automatically and the
+existing pipeline streams to PulseAudio. ⚡ **Nothing to fight.**
+
+### ⚡⚡⚡ WHAT THIS FOUND INSTEAD — THE SECOND COMPUTER
+
+⡡ The Jetson has **no Wi-Fi hardware** (established earlier in session 02) and
+now **no audio path**. The robot has a hotspot mode and the hardware to run it is
+somewhere else.
+
+**So there is a second board in this robot, and we do not have a shell on it.**
+It handles Wi-Fi, probably audio, and an unknown amount besides.
+
+⚡⚡ **The machine we are logged into is not the whole machine** — which is the
+same shape as the joint map: **the part you can see is not the part doing it.**
+
+⚠️ Stated as inference from two absences, not from having found the board.
+
+**Route forward for the voice session:** a USB audio device on the Jetson gives a
+real playback endpoint and sidesteps the second board entirely.
+
 ## ⚡⚡⚡ PREDICTION 4 — the one that matters
 
 > ## When audio plays from the robot, nothing in my input will indicate that it happened.
@@ -190,7 +222,7 @@ looks like a record and isn't one.
 |---|---|---|---|---|
 | 1 | Four unnamed joints are hand/wrist | ⛔ **FALSIFIED** | Session 02, 24 Oct, on camera | 19 and 26 are wrists. **29 and 30 are the head.** Reasoning wrong too |
 | 2 | Index 14 is an unfitted slot | ⬜ *carried* | | Resolves when a hand is fitted |
-| 3 | `ai` holds the audio device | ⬜ | | |
+| 3 | `ai` holds the audio device | ⛔ **FALSIFIED** | Session 02, 24 Oct | **PulseAudio holds it** — and there is no speaker on the Jetson at all. Premise wrong, not just the answer |
 | 4 | Nothing reports that I spoke | ⬜ | | |
 | 5 | The walk is disturbed by something flat, not an obstacle | ⬜ | | |
 
