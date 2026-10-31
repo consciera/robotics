@@ -16,3 +16,6 @@ SEALED_PREDICTIONS_*
 
 # Generated audio (the generation script is the source)
 *.pcm
+
+# Conversation transcripts: kept local (they can name people)
+cas-r1/sessions/*/data/conversation-*.jsonl

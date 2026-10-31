@@ -59,6 +59,15 @@ documented anywhere we found.
 - The volume was at 100 (maximum) by default. **Observed.**
 - Playback worked with the `ai` service running and untouched. **Observed.**
 
+## Session 04: return codes captured
+
+`play_pcm` now prints each chunk's `PlayStream` return code. Across 15 logged
+replies in session 04 (1.7–15.7 s, up to 6 chunks, sent paced), **every chunk
+returned code 0**. **Observed.** The operator reported no audio cut-offs. (The
+one "cut-off" reported was our text length cap, not the speaker.) The failing
+case (a long clip sent unpaced) wasn't rerun, so whether dropped chunks return an
+error is still unknown.
+
 ## Pipeline used (session 03)
 
 1. Laptop (has internet): `tts_elevenlabs.py "text" out.pcm CASSIAN [model]` →
