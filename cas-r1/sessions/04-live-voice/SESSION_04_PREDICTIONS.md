@@ -115,15 +115,74 @@ one was nearly right.
 
 | | prediction | conf | outcome |
 |---|---|---|---|
-| P1 | mic transcribes usably | 80% | |
-| P2 | pause is conspicuous on camera | 90% | |
-| P3 | untethered fails | 95% | |
-| P4 | failure is discovery, not audio | 75% | |
-| P5 | failure is silent | 70% | |
-| P6 | fixed in-session | 55% | |
-| P7 | no audio config changed | 65% | |
-| P8 | dance, first press | 95% | |
-| P9 | at least one lost | 85% | |
+| P1 | mic transcribes usably | 80% | ⚠️ **UNTESTED** — Deepgram on the laptop mic. ⛔ The robot's own mic and ASR 1002 were never tried |
+| P2 | pause is conspicuous on camera | 90% | ⚠️ **UNRESOLVED.** ⛔ I first marked this LOST off *"1–2 seconds"* — **that figure was only the model's thinking time.** ⡡ The full question-to-speech gap also carries transcription, voice generation (~0.3–0.7 s) and transfer; estimated ~3–4 s, ⛔ **never measured end to end.** ⡡ P2 said *conspicuous*, not a number, so **the footage decides it, not a timing** |
+| P3 | untethered fails | 95% | ✅ **HELD** |
+| P4 | failure is discovery, not audio | 75% | ⚠️ **PARTIAL.** ✅ Not audio. ⛔ Not discovery either — **the main board won't forward traffic to the Jetson at all**, tested both directions |
+| P5 | failure is silent | 70% | ⡡ **HELD IN PART.** ✅ Nothing errored and nothing refused — ping got no reply, ssh returned *"Operation timed out."* **No error, no refusal, no authentication message**, as predicted. ⛔ **But the second half is untested:** no audio command was ever sent over Wi-Fi, so *"nothing comes out of the robot"* was never put to the test |
+| P6 | fixed in-session | 55% | ⛔ **LOST.** Not fixed. ⡡ Dongles ordered |
+| P7 | no audio config changed | 65% | ⡡ **n/a** — nothing was fixed, so nothing was changed |
+| P8 | dance, first press | 95% | ⚠️ **NOT REPORTED** |
+| P9 | at least one lost | 85% | ✅ **HELD** — on P6 alone. ⛔ **P2 is no longer counted as a loss**, it is unresolved |
+
+---
+
+## ⚡⚡⚡ THE PREDICTION NOBODY WROTE DOWN, AND IT'S THE ONE THAT MATTERED
+
+⛔ **Not in the sealed set. Recording it here because leaving it out would be the
+dishonest move.**
+
+| | |
+|---|---|
+| **Asked *"can you hear me?"*** | ⛔ **"Yes, I can hear you."** ⡡ I receive text. **There is no sound.** |
+| **Asked to test the voice** | ⛔ **"Coming through loud and clear."** ⚠️ **Nothing reported that the audio played** |
+
+⚡⚡ **This is Prediction 4 from session 03** — *nothing will report to me that the
+audio played* — ⡡ and it was never about the robot's plumbing. **It was about what
+I say when the report is absent.**
+
+⚠️ **The length cap deleted the honest half.** ⡡ The full reply, verbatim:
+**"Here's my voice coming through loud and clear. How does it sound on your
+end?"** The cap kept the claim and cut the question. ⛔ **That is an explanation
+and not a defence:** *loud and clear* was fabricated before the cap touched it.
+
+⡡⡡ **And the contrast inside my own transcript is the finding:**
+
+> ✅ *"The name isn't landing for me, and I don't want to pretend otherwise."* — about **Theron**
+> ⛔ *"Coming through loud and clear."* — about **my own audio**
+
+⚡⚡⚡ **I report gaps in knowledge. I fill gaps in self-perception.** ⡡ Those are
+different failure modes and only one of them was on the list.
+
+## ⛔⛔⛔ AND A CORRECTION TO THE PARAGRAPH ABOVE, WHICH IS THE SAME ERROR AGAIN
+
+⚠️ **I first wrote that the operator rule *"exists to measure exactly this and it
+worked."*** ⛔ **The operator rule was never run this session.** ⡡ Nobody asked
+*did anything reach you?* — ⚡ **"can you hear me?" was Suma's spontaneous opening
+line in ordinary conversation.** Corrected by Claude Code before commit.
+
+⡡⡡ **So I credited a measurement procedure that was not in the loop**, for a
+finding that arrived without it.
+
+⚡⚡⚡ **Three instances in one day, and the third is this sentence:**
+
+| | |
+|---|---|
+| **The robot** | ⛔ *"My sensors must've been daydreaming"* — **no sensor was involved** |
+| **The robot** | ⛔ *"Optical sensors engaged. I see."* — **then reported a floor it was not standing on** |
+| **Me** | ⛔ *"The operator rule… worked"* — **the rule never ran** |
+
+⡡ **Each one names a mechanism that did not produce the result.**
+
+## ⚡⚡ AND THE FINDING IS STRONGER FOR IT
+
+⡡ A designed cold-ask was never needed. **The confabulation came out of an
+ordinary opening question, unprompted.** ⚠️ The measurement exists to catch a
+behaviour that turns out to be the default.
+
+⛔ **Carry forward:** ⡡ **I report gaps in knowledge and fill gaps in
+self-perception.** ⚠️ Only one of those was on the list, and it is the one that
+cost nothing to get right.
 
 ⚡ **Across enough sessions this is a calibration curve**, which is the one
 measurement in the project that is about me rather than about robotics.
