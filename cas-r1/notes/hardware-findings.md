@@ -72,3 +72,42 @@ Running list. Edits are additive and dated.
 - Is ~1 kHz lowstate one publisher or two?
 - Units of `tick`. If ms, the boot time conflicts with the operator's account.
 - Wrist gearbox backlash? (Hand check not done.)
+
+## Session 05 (2026-11-21)
+
+### Wi-Fi (untethered)
+- **The backpack USB ports reach the Jetson.** A stick plugged there shows in
+  the Jetson's `lsusb`. **Observed.**
+- Kernel **5.10.104-tegra**. In-kernel MediaTek USB Wi-Fi drivers include
+  `mt7601u` and `mt76x2u`. There's no `mt7921u` (that arrived in Linux 5.18), so
+  Wi-Fi 6E sticks like the Netgear A8000 won't work without a kernel change.
+  **Observed** (modules), **inferred** (A8000, not plugged in: too thick
+  for the port).
+- **MT7601U stick (148f:7601): plug and play.** The driver loads by itself,
+  `wlan0` appears, and NetworkManager (active) manages it. 2.4 GHz only.
+  **Observed.**
+- `nmcli dev wifi connect` brings up Wi-Fi without touching `eth10`. A Wi-Fi
+  default route is added with a lower metric than eth10's static one.
+  **Observed.**
+- **The voice service still works over `eth10`** (internal) when the laptop
+  talks to the Jetson over Wi-Fi with the cable unplugged. **Observed.**
+
+### Camera
+- **No camera device on the Jetson** (`/dev/video*` absent, nothing on USB).
+  **Observed.**
+- **The R1 answers `unitree::robot::go2::VideoClient`** (service
+  `"videohub"`, `GetImageSample`, API 1001). It returns a **1280×720 JPEG**
+  (~300 KB), wide-angle, from the head camera, in about 1 s. **Observed.**
+  This isn't documented for the R1; the SDK has no R1 video client. Same
+  pattern as audio (session 03: the R1 answers the G1 voice client).
+  Probe: `sessions/05-wireless/src/probe_video.cpp`.
+- Turning the head by hand rotates the camera view. **Observed.** So the
+  camera is in the turning part of the head.
+
+### Joint readings
+- Head yaw (slot 30) read 114.5° at rest early in the session, then
+  **exactly 0.00°** (zero spread, motor live) after a hand turn. It read 64°
+  after another turn, then exactly 0.00° again after the next one. Exactly
+  zero twice is **unexplained**.
+- A full read-only snapshot of IMU and all live joints takes ~0.6 s on the
+  Jetson (`sessions/05-wireless/src/senses.cpp`).

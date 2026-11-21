@@ -19,3 +19,4 @@ SEALED_PREDICTIONS_*
 
 # Conversation transcripts: kept local (they can name people)
 cas-r1/sessions/*/data/conversation-*.jsonl
+cas-r1/sessions/*/data/last-senses.json

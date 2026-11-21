@@ -91,6 +91,7 @@ One folder per session, numbered in order (sessions are roughly weekly).
 | 02 | 2026-10-24 | [Supine baseline](cas-r1/sessions/02-supine-baseline/) | read-only baseline before anything moved; same 26 live slots; live on-camera display |
 | 03 | 2026-10-24 | [Voice](cas-r1/sessions/03-voice/) | found the speaker route (G1 `voice` service on the R1); robot spoke in Cassian's ElevenLabs voice; long clips need paced sending |
 | 04 | 2026-10-31 | [Live voice](cas-r1/sessions/04-live-voice/) | spoken conversation with Cassian through the robot's speaker, cabled; untethered blocked (main board doesn't forward to the Jetson) |
+| 05 | 2026-11-21 | [Wireless, and senses](cas-r1/sessions/05-wireless/) | untethered via a USB Wi-Fi stick; Cassian given the head camera (undocumented Go2 video service), tilt sensor and joint readings |
 
 A second integration on different hardware gets its own top-level directory.
 One repository, because the log should not be split when the machine changes.
